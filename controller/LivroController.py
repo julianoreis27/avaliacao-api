@@ -22,9 +22,10 @@ class LivroController:
     def cadastrar():
         dados = request.get_json()  # pega o JSON enviado no corpo da requisição
         if not dados or not dados.get("titulo") or not dados.get("autor"):
-            return LivroView.erro("Os campos 'titulo' e 'autor' são obrigatórios", 400)
+            return LivroView.erro("Os campos 'titulo' e 'autor' são obrigatórios")
         novo_id = Livro.cadastrar(dados)
-        return LivroView.sucesso({"mensagem": "Livro cadastrado com sucesso", "id": novo_id}, 201)
+        resposta = {"mensagem": "Livro cadastrado com sucesso", "id": novo_id}
+        return LivroView.sucesso(resposta, 201)
 
     @staticmethod
     def atualizar(id):
@@ -32,7 +33,7 @@ class LivroController:
             return LivroView.erro("Livro não encontrado", 404)
         dados = request.get_json()
         if not dados or not dados.get("titulo") or not dados.get("autor"):
-            return LivroView.erro("Os campos 'titulo' e 'autor' são obrigatórios", 400)
+            return LivroView.erro("Os campos 'titulo' e 'autor' são obrigatórios")
         Livro.atualizar(id, dados)
         return LivroView.mensagem("Livro atualizado com sucesso")
 

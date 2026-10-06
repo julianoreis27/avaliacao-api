@@ -7,8 +7,11 @@ app.json.sort_keys = False  # mantém a ordem das colunas no JSON
 app.json.ensure_ascii = False  # mostra acentos normalmente no JSON
 
 # Swagger: documentação e testes em http://localhost:5000/apidocs
-Swagger(app, template={"info": {"title": "API Livros", "version": "1.0",
-                                "description": "API de cadastro de livros (MVC com Flask e MySQL)"}})
+Swagger(app, template={"info": {
+    "title": "API Livros",
+    "version": "1.0",
+    "description": "API de cadastro de livros (MVC com Flask e MySQL)"
+}})
 
 
 @app.route("/livros", methods=["GET"])
